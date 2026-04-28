@@ -11,8 +11,6 @@ const PRODUCTS = [
     desc:
       "Engineered for clean mass with a precision blend of fast & slow proteins, complex carbs and BCAAs.",
     img: "/images/muzafernagar MOCKUP.png",
-    price: 2499,
-    mrp: 2999,
     badge: "BESTSELLER",
     stats: { protein: "24g", carbs: "62g", bcaa: "5.5g", servings: "30" },
   },
@@ -23,8 +21,6 @@ const PRODUCTS = [
     desc:
       "Heavy-duty calorie surplus formula crafted for hard gainers who want serious size, fast.",
     img: "/images/muzaffarnagar  MOCK 1kg 2.png",
-    price: 1899,
-    mrp: 2299,
     badge: "MASS BUILDER",
     stats: { protein: "20g", carbs: "78g", bcaa: "4.8g", servings: "20" },
   },
@@ -35,8 +31,6 @@ const PRODUCTS = [
     desc:
       "Pro-grade upgrade — more whey isolate, more digestive enzymes, zero filler.",
     img: "/images/muzaffarnagar mock 1kg 3.png",
-    price: 2299,
-    mrp: 2799,
     badge: "PREMIUM",
     stats: { protein: "26g", carbs: "70g", bcaa: "6.2g", servings: "20" },
   },
@@ -47,8 +41,6 @@ const PRODUCTS = [
     desc:
       "Track-tested calorie matrix for athletes who train hard and recover harder.",
     img: "/images/muzaffarnagar MOCK 1KG.png",
-    price: 2099,
-    mrp: 2499,
     badge: "PERFORMANCE",
     stats: { protein: "22g", carbs: "65g", bcaa: "5g", servings: "20" },
   },
@@ -62,12 +54,6 @@ const NAV = [
   { label: "Contact", href: "#contact" },
 ];
 
-const formatINR = (n: number) =>
-  new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-    maximumFractionDigits: 0,
-  }).format(n);
 
 export default function Home() {
   const [active, setActive] = useState(0);
@@ -120,8 +106,6 @@ export default function Home() {
   }, []);
 
   const product = PRODUCTS[active];
-  const discount = Math.round(((product.mrp - product.price) / product.mrp) * 100);
-
   return (
     <div id="home" className="relative flex flex-1 flex-col overflow-hidden">
       {/* ---------- HEADER ---------- */}
@@ -164,7 +148,7 @@ export default function Home() {
               href="#products"
               className="hidden items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2 text-sm font-bold text-black transition hover:scale-[1.03] sm:inline-flex"
             >
-              Shop Now
+              Our Products
               <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
@@ -199,7 +183,7 @@ export default function Home() {
               onClick={() => setMenuOpen(false)}
               className="mt-1 rounded-xl bg-[var(--accent)] px-4 py-3 text-center text-sm font-bold text-black"
             >
-              Shop Now
+              Our Products
             </a>
           </nav>
         </div>
@@ -243,7 +227,7 @@ export default function Home() {
                 href="#products"
                 className="group inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-7 py-3.5 text-sm font-bold tracking-wide text-black transition hover:scale-[1.04]"
               >
-                Shop Mass Gainers
+                Explore Products
                 <svg className="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
@@ -297,14 +281,6 @@ export default function Home() {
                 </div>
                 <div className="text-sm font-bold text-white">{product.short}</div>
               </div>
-              <div className="absolute -right-2 bottom-12 hidden rounded-2xl bg-[var(--accent)] px-4 py-3 text-black sm:block">
-                <div className="text-[10px] font-bold uppercase tracking-widest">
-                  Save {discount}%
-                </div>
-                <div className="display-num text-xl font-black">
-                  {formatINR(product.price)}
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -314,11 +290,10 @@ export default function Home() {
           <div className="animate-marquee flex w-max gap-12 whitespace-nowrap text-xs font-bold uppercase tracking-[0.32em] text-white/60">
             {Array.from({ length: 2 }).map((_, k) => (
               <div key={k} className="flex gap-12">
-                <span>★ Free Shipping Above ₹999</span>
                 <span>★ 100% Authentic</span>
                 <span>★ Lab Tested</span>
                 <span>★ Made For Athletes</span>
-                <span>★ Cash On Delivery</span>
+                <span>★ Premium Quality</span>
                 <span>★ 50,000+ Happy Lifters</span>
               </div>
             ))}
@@ -417,27 +392,17 @@ export default function Home() {
                   ))}
                 </div>
 
-                {/* Price + CTA */}
-                <div className="mt-7 flex flex-wrap items-center gap-5">
-                  <div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="display-num text-3xl font-black text-white">
-                        {formatINR(product.price)}
-                      </span>
-                      <span className="text-sm text-white/40 line-through">
-                        {formatINR(product.mrp)}
-                      </span>
-                    </div>
-                    <div className="text-xs font-semibold text-[var(--accent)]">
-                      Save {discount}% · Inclusive of GST
-                    </div>
-                  </div>
-                  <button className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-black transition hover:scale-[1.04]">
-                    Add To Cart
+                {/* CTA */}
+                <div className="mt-7">
+                  <a
+                    href="#contact"
+                    className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-black transition hover:scale-[1.04]"
+                  >
+                    Get In Touch
                     <svg className="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M5 12h14M13 6l6 6-6 6" />
                     </svg>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -461,7 +426,6 @@ export default function Home() {
           <div className="reveal mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {PRODUCTS.map((p, i) => {
               const isActive = i === active;
-              const d = Math.round(((p.mrp - p.price) / p.mrp) * 100);
               return (
                 <button
                   key={p.name}
@@ -470,9 +434,6 @@ export default function Home() {
                     isActive ? "border-[var(--accent)]" : "border-white/10 hover:border-white/25"
                   }`}
                 >
-                  <div className="absolute right-3 top-3 rounded-full bg-[var(--accent)] px-2 py-0.5 text-[10px] font-black text-black">
-                    -{d}%
-                  </div>
                   <div className="relative mx-auto h-56 w-full max-w-[220px]">
                     <div className="absolute inset-4 rounded-full bg-white/5 blur-2xl transition group-hover:bg-[var(--accent)]/20" />
                     <div className="shine relative h-full w-full">
@@ -486,26 +447,13 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="mt-4 flex flex-1 flex-col">
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/55">
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-[var(--accent)]">
                       {p.badge}
                     </div>
                     <div className="mt-1 line-clamp-2 text-sm font-bold leading-snug text-white">
                       {p.name}
                     </div>
                     <div className="mt-1 text-xs text-white/45">{p.flavor.split(" · ")[0]}</div>
-                    <div className="mt-auto flex items-center justify-between pt-4">
-                      <div>
-                        <div className="display-num text-lg font-black text-white">
-                          {formatINR(p.price)}
-                        </div>
-                        <div className="text-[11px] text-white/40 line-through">
-                          {formatINR(p.mrp)}
-                        </div>
-                      </div>
-                      <span className="rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold text-white/80 group-hover:bg-[var(--accent)] group-hover:text-black">
-                        View →
-                      </span>
-                    </div>
                   </div>
                 </button>
               );
@@ -660,30 +608,30 @@ export default function Home() {
           <div className="reveal relative overflow-hidden rounded-3xl bg-[var(--accent)] px-6 py-14 sm:px-14">
             <div className="pointer-events-none absolute inset-0 soft-grid opacity-30" />
             <div className="animate-blob pointer-events-none absolute -right-10 -top-10 h-60 w-60 rounded-full bg-[var(--accent-2)]/40 blur-3xl" />
-            <div className="relative grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-              <div>
-                <h3 className="display-num text-4xl font-black leading-tight text-black sm:text-5xl">
-                  Get 10% off your first order.
-                </h3>
-                <p className="mt-4 max-w-xl text-black/75">
-                  Join 50,000+ lifters fueling their grind with Max Power Nutrition.
-                  Free shipping on orders above ₹999.
-                </p>
-              </div>
-              <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-3 sm:flex-row">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter your email"
-                  className="w-full rounded-full border border-black/20 bg-white px-5 py-3.5 text-sm text-black placeholder-black/40 outline-none focus:border-black"
-                />
-                <button
-                  type="submit"
-                  className="rounded-full bg-black px-7 py-3.5 text-sm font-bold text-white transition hover:scale-[1.04]"
+            <div className="relative mx-auto max-w-2xl text-center">
+              <h3 className="display-num text-4xl font-black leading-tight text-black sm:text-5xl">
+                Ready to fuel your gains?
+              </h3>
+              <p className="mt-4 text-black/75">
+                Join 50,000+ lifters who trust Max Power Nutrition for clean, premium mass gainers.
+              </p>
+              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <a
+                  href="mailto:contact@maxpowernutrition.com"
+                  className="inline-flex items-center gap-2 rounded-full bg-black px-7 py-3.5 text-sm font-bold text-white transition hover:scale-[1.04]"
                 >
-                  Claim Discount
-                </button>
-              </form>
+                  Contact Us
+                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </a>
+                <a
+                  href="#products"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/30 px-7 py-3.5 text-sm font-bold text-black transition hover:bg-black/10"
+                >
+                  View Products
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -725,7 +673,7 @@ export default function Home() {
           </div>
           <div>
             <div className="text-xs font-bold uppercase tracking-widest text-white/50">
-              Shop
+              Products
             </div>
             <ul className="mt-4 space-y-2 text-sm text-white/75">
               {PRODUCTS.map((p) => (
@@ -745,12 +693,11 @@ export default function Home() {
               <li><a className="transition hover:text-[var(--accent)]" href="#why">Why Us</a></li>
               <li><a className="transition hover:text-[var(--accent)]" href="#reviews">Reviews</a></li>
               <li><a className="transition hover:text-[var(--accent)]" href="#contact">Contact</a></li>
-              <li><a className="transition hover:text-[var(--accent)]" href="#">Privacy</a></li>
             </ul>
           </div>
         </div>
         <div className="mx-auto mt-10 flex w-full max-w-7xl flex-col items-start justify-between gap-3 border-t border-white/10 px-5 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:px-8">
-          <div>© {new Date().getFullYear()} Max Power Nutrition. All rights reserved.</div>
+          <div> 2023 Max Power Nutrition. All rights reserved.</div>
           <div>Made with grit. Forged for gains.</div>
         </div>
       </footer>
