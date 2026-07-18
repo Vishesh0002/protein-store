@@ -44,6 +44,16 @@ const PRODUCTS = [
     badge: "PERFORMANCE",
     stats: { protein: "22g", carbs: "65g", bcaa: "5g", servings: "20" },
   },
+  {
+    name: "WHEY ABC",
+    short: "WHEY ABC",
+    flavor: "Pista Kulfi · Vanilla",
+    desc:
+      "Premium fast-absorbing whey protein isolate blend designed for rapid post-workout recovery and muscle protein synthesis.",
+    img: "/images/abc_png-removebg-preview.png",
+    badge: "RECOVERY",
+    stats: { protein: "25g", carbs: "3g", bcaa: "5.5g", servings: "30" },
+  },
 ];
 
 const NAV = [
